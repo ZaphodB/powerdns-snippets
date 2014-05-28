@@ -152,6 +152,8 @@ def parse(fd, out):
 		kind, qname, qclass, qtype, qid, ip = request
 	except:
 		kind, qname, qclass, qtype, qid, ip, their_ip = request
+	
+	qname = qname.lower()
 	#debug
 	#print >>out, 'LOG\tPowerDNS sent qname>>%s<< qtype>>%s<< qclass>>%s<< qid>>%s<< ip>>%s<<' % (qname, qtype, qclass, qid, ip)
 
