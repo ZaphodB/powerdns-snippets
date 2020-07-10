@@ -4,7 +4,7 @@
 # launch=pipe
 # pipe-command=/path/to/catchall.pl
 # pipe-timeout=1000
-# pipebackend-abi-version=2
+# pipe-abi-version=2
 
 use strict;
 use warnings;
