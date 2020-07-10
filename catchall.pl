@@ -11,6 +11,8 @@ use warnings;
 $|=1;					# no buffering
 
 my $webserverip="4.3.2.1";
+my $nameserver="ns1.example.com";
+my $hostmaster="hostmaster.example.com";
 my $line=<>;
 chomp($line);
 unless($line eq "HELO\t2") {
@@ -50,6 +52,9 @@ LINE: while(<>)
 		next LINE;
 	}
 	if((defined $type)&&(defined $qname)&&(defined $qclass)&&(defined $qtype)&&(defined $id)&&(defined $ip)&&(defined $lip)) {
+		if(($qtype eq "SOA")||($qtype eq "ANY")) {
+			print "DATA	$qname	$qclass	SOA	3600	-1	$nameserver	$hostmaster 2008080300 1800 3600 604800 3600\n";
+		}
 		if(($qtype eq "A")||($qtype eq "ANY")) {
 			print "DATA	$qname	IN	A	3600	1	$webserverip\n";
 		}
